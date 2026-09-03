@@ -94,3 +94,47 @@ body {
 .legal a {
   @apply font-medium text-teal-800 underline decoration-teal-700/30 underline-offset-2 transition hover:decoration-teal-700;
 }
+
+/* ── Simple mode ───────────────────────────────────────────────────────────
+   Scales the interface for someone who is squinting, and enlarges anything
+   you have to hit with a thumb. Keyed off a data attribute set once on <html>
+   so the whole app changes together instead of component by component.
+
+   Sizes are deliberate rather than a blanket zoom: a uniform scale grows the
+   chrome as fast as the content and you end up reading the same amount of
+   text through a smaller window. */
+:root[data-simple="on"] {
+  font-size: 18px;
+}
+:root[data-simple="on"] body {
+  line-height: 1.7;
+}
+/* Anything tappable gets a real target. 56px is comfortably past the 44 Apple
+   asks for — this is the mode for people who miss buttons. */
+:root[data-simple="on"] button,
+:root[data-simple="on"] a[href],
+:root[data-simple="on"] select {
+  min-height: 3.5rem;
+}
+/* Except things that are deliberately inline in a sentence, where a 56px link
+   would break the paragraph apart. */
+:root[data-simple="on"] p a[href],
+:root[data-simple="on"] li a[href],
+:root[data-simple="on"] span a[href],
+:root[data-simple="on"] .legal a[href] {
+  min-height: 0;
+}
+:root[data-simple="on"] input,
+:root[data-simple="on"] textarea {
+  font-size: 1.05rem;
+  padding-top: 0.85rem;
+  padding-bottom: 0.85rem;
+}
+/* Labels and helper text carry real information here and were sized as
+   decoration. */
+:root[data-simple="on"] .text-xs,
+:root[data-simple="on"] .text-\[11px\],
+:root[data-simple="on"] .text-\[12px\],
+:root[data-simple="on"] .text-\[13px\] {
+  font-size: 0.95rem;
+}

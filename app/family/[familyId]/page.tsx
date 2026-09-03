@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useDeferredValue, useEffect, useMemo, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useStore } from "@/lib/store";
+import { useSimpleMode } from "@/lib/elder";
 import { findPath, personMatch, personMatches, timeAgo } from "@/lib/helpers";
 import { useNarrow } from "@/lib/useNarrow";
 import { allSuggestions } from "@/lib/suggestions";
@@ -15,6 +16,7 @@ import {
   type ViewMode,
 } from "@/components/TreeCanvas";
 import { DetailPanel } from "@/components/DetailPanel";
+import { Tour, useTour } from "@/components/Tour";
 import { AddMemberModal } from "@/components/AddMemberModal";
 import { AddChildrenModal } from "@/components/AddChildrenModal";
 import { ClusterModal } from "@/components/ClusterModal";
@@ -64,6 +66,12 @@ export default function FamilyPage() {
   const { familyId } = useParams<{ familyId: string }>();
   const router = useRouter();
   const { state, hydrated, currentUser, loadError, refresh, removeMember } = useStore();
+  // Simple mode keeps the tree, a person, adding someone and finding
+  // someone. Everything below is exploration, and exploration is the part
+  // that overwhelms.
+  const { simple } = useSimpleMode();
+  // First visit opens the walkthrough; the ? button brings it back.
+  const tour = useTour();
 
   const [selection, setSelection] = useState<Selection | null>(null);
   const [meMode, setMeMode] = useState(false);
@@ -283,6 +291,7 @@ export default function FamilyPage() {
 
           {/* Tree Beta — a separate page for trying new layouts out. Nothing
               on it writes, and nothing on this page depends on it. */}
+          {!simple && (
           <Link
             href={`/family/${familyId}/beta`}
             className="hidden shrink-0 items-center gap-1.5 rounded-xl border border-indigo-200 bg-indigo-50/60 px-2.5 py-1.5 text-xs font-semibold text-indigo-700 transition hover:border-indigo-300 hover:bg-indigo-100 sm:flex"
@@ -294,6 +303,7 @@ export default function FamilyPage() {
             </svg>
             Beta
           </Link>
+          )}
 
           {/* Search */}
           <div className="relative hidden w-56 md:block">
@@ -378,6 +388,19 @@ export default function FamilyPage() {
             </button>
           )}
 
+          <button
+            type="button"
+            onClick={tour.reopen}
+            title="How this works"
+            aria-label="How this works"
+            className="hidden shrink-0 rounded-lg p-2 text-stone-400 transition hover:bg-stone-100 hover:text-stone-700 sm:block"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <circle cx="12" cy="12" r="9" />
+              <path d="M9.6 9.6a2.5 2.5 0 1 1 3.3 2.4c-.6.2-.9.7-.9 1.3v.4M12 17h.01" />
+            </svg>
+          </button>
+
           <Link
             href="/settings"
             title="Your account"
@@ -387,7 +410,7 @@ export default function FamilyPage() {
             <Avatar name={currentUser.name} id={currentUser.id} size={28} />
           </Link>
 
-          {suggestionCount > 0 && (
+          {suggestionCount > 0 && !simple && (
             <button
               onClick={() => setReviewOpen(true)}
               title={`${suggestionCount} assumed connections to review`}
@@ -825,6 +848,8 @@ export default function FamilyPage() {
           ))}
         </div>
       </nav>
+
+      <Tour open={tour.open} onClose={tour.close} />
 
       {/* ─── Modals ─── */}
       <AddMemberModal

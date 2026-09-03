@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useStore } from "@/lib/store";
+import { useSimpleMode } from "@/lib/elder";
 import { Avatar, LoadingScreen, Wordmark } from "@/components/ui";
 
 /**
@@ -20,6 +21,7 @@ import { Avatar, LoadingScreen, Wordmark } from "@/components/ui";
  */
 export default function SettingsPage() {
   const { state, hydrated, currentUser } = useStore();
+  const { simple, setSimple } = useSimpleMode();
   const router = useRouter();
 
   useEffect(() => {
@@ -64,6 +66,34 @@ export default function SettingsPage() {
           </a>
           .
         </p>
+
+        {/* ── Simple mode ──
+            First, and not behind a "Pending" chip, because unlike everything
+            else on this page it actually works. */}
+        <section className="mt-8 rounded-2xl border border-stone-200/80 bg-white p-5">
+          <h2 className="font-display text-lg font-semibold text-stone-900">
+            Make Dynasty simpler
+          </h2>
+          <p className="mt-1 text-sm text-stone-500">
+            Bigger text, bigger buttons, and only the things most people need.
+          </p>
+          <label className="mt-4 flex cursor-pointer items-start gap-3 rounded-xl border-2 border-stone-200 px-4 py-3.5 transition hover:border-stone-300">
+            <input
+              type="checkbox"
+              checked={simple}
+              onChange={(e) => setSimple(e.target.checked)}
+              className="mt-1 h-5 w-5 shrink-0 cursor-pointer accent-teal-800"
+            />
+            <span className="text-sm leading-relaxed text-stone-700">
+              <span className="block font-semibold text-stone-900">
+                Use the simple view
+              </span>
+              Keeps looking at the tree, opening a person, adding a relative and
+              finding someone by name. Puts the rest away — nothing is lost, and
+              you can switch back here whenever you like.
+            </span>
+          </label>
+        </section>
 
         {/* ── Profile ── */}
         <Section title="Profile" note="How you appear to the rest of your family.">
