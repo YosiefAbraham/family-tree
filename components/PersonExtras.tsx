@@ -79,7 +79,7 @@ export function PersonExtras({
   return (
     <div className="mt-5">
       <div className="mb-2 flex items-center justify-between">
-        <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
+        <p className="text-xs font-semibold uppercase tracking-wider text-stone-500">
           More details
         </p>
         <button
@@ -124,7 +124,7 @@ export function PersonExtras({
       )}
 
       {!hasAnything && !editing && !picking && (
-        <p className="rounded-xl border border-dashed border-stone-200 px-3.5 py-3 text-sm text-stone-400">
+        <p className="rounded-xl border border-dashed border-stone-200 px-3.5 py-3 text-sm text-stone-500">
           Nothing here yet — add a story, a comment, or where they live.
         </p>
       )}
@@ -212,14 +212,14 @@ export function PersonExtras({
             return (
               <div key={f.key} className="group rounded-xl bg-stone-50 px-3 py-2">
                 <div className="flex items-baseline justify-between gap-2">
-                  <dt className="text-[10px] font-semibold uppercase tracking-wider text-stone-400">
+                  <dt className="text-[10px] font-semibold uppercase tracking-wider text-stone-500">
                     {f.label}
                   </dt>
                   <span className="flex items-center gap-1.5 opacity-100 transition sm:gap-0.5 sm:opacity-0 sm:group-hover:opacity-100">
                     <button
                       onClick={() => setEditing(f.key)}
                       aria-label={`Edit ${f.label}`}
-                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-stone-400 transition hover:bg-stone-200 hover:text-stone-600 sm:h-7 sm:w-7"
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-stone-500 transition hover:bg-stone-200 hover:text-stone-600 sm:h-7 sm:w-7"
                     >
                       <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                         <path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
@@ -265,7 +265,7 @@ export function PersonExtras({
       {/* Comments */}
       {comments.length > 0 && (
         <div className="mt-3">
-          <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-stone-400">
+          <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wider text-stone-500">
             Comments · {comments.length}
           </p>
           <ul className="space-y-1.5">
@@ -277,7 +277,7 @@ export function PersonExtras({
                     <span className="flex items-center gap-1.5 text-xs font-medium text-stone-600">
                       <Avatar name={userName(state, c.userId)} id={c.userId} size={18} />
                       {userName(state, c.userId)}
-                      <span className="font-normal text-stone-400">· {timeAgo(c.createdAt)}</span>
+                      <span className="font-normal text-stone-500">· {timeAgo(c.createdAt)}</span>
                     </span>
                     {c.userId === currentUser?.id && (
                       <DangerIconButton
@@ -324,7 +324,7 @@ export function PersonExtras({
             />
             {(lightbox.taggedPersonIds.length > 0 || lightbox.personId !== person.id) && (
               <div className="mt-3 flex flex-wrap items-center gap-1.5">
-                <span className="text-xs text-stone-400">In this photo:</span>
+                <span className="text-xs text-stone-500">In this photo:</span>
                 {[lightbox.personId, ...lightbox.taggedPersonIds].map((pid) => {
                   const p = state.people.find((x) => x.id === pid);
                   if (!p) return null;
@@ -501,7 +501,7 @@ function PhotoEditor({ person, onDone }: { person: Person; onDone: () => void })
       />
       {others.length > 0 && (
         <div className="mt-2">
-          <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-stone-400">
+          <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-stone-500">
             Tag people in this photo
           </p>
           <div className="flex flex-wrap gap-1.5">
@@ -533,7 +533,7 @@ function PhotoEditor({ person, onDone }: { person: Person; onDone: () => void })
               );
             })}
           </div>
-          <p className="mt-1.5 text-[11px] text-stone-400">
+          <p className="mt-1.5 text-[11px] text-stone-500">
             Tagged people get this photo under their node too.
           </p>
         </div>

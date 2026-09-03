@@ -90,7 +90,7 @@ export default function DashboardPage() {
                 await signOut();
                 router.replace("/");
               }}
-              className="text-xs font-medium text-stone-400 transition hover:text-stone-600"
+              className="text-xs font-medium text-stone-500 transition hover:text-stone-600"
             >
               Sign out
             </button>
@@ -194,7 +194,7 @@ export default function DashboardPage() {
                   Cousins
                 </h2>
                 {profile.cousinsByDegree.length === 0 ? (
-                  <p className="mt-2 text-sm text-stone-400">
+                  <p className="mt-2 text-sm text-stone-500">
                     No cousins recorded yet.
                   </p>
                 ) : (
@@ -292,7 +292,7 @@ export default function DashboardPage() {
                     })}
                   </div>
                   {lastActivity && (
-                    <span className="text-xs text-stone-400">
+                    <span className="text-xs text-stone-500">
                       last addition {timeAgo(lastActivity)}
                     </span>
                   )}
@@ -303,7 +303,7 @@ export default function DashboardPage() {
 
           <button
             onClick={() => setCreateOpen(true)}
-            className="flex min-h-[150px] flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-stone-200 text-stone-400 transition hover:border-teal-800/40 hover:text-teal-800"
+            className="flex min-h-[150px] flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed border-stone-200 text-stone-500 transition hover:border-teal-800/40 hover:text-teal-800"
           >
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M12 5v14M5 12h14" />
@@ -354,7 +354,7 @@ export default function DashboardPage() {
 function Stat({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
     <div className="rounded-2xl border border-stone-200/80 bg-white p-4">
-      <p className="text-[11px] font-semibold uppercase tracking-wider text-stone-400">
+      <p className="text-[11px] font-semibold uppercase tracking-wider text-stone-500">
         {label}
       </p>
       <p className="font-display mt-1 truncate text-xl font-semibold text-stone-900">

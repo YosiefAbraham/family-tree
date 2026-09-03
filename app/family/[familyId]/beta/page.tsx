@@ -179,7 +179,7 @@ export default function TreeBetaPage() {
           <Link
             href={`/family/${familyId}`}
             aria-label="Back to the main tree"
-            className="shrink-0 rounded-lg p-1.5 text-stone-400 transition hover:bg-stone-100 hover:text-stone-700"
+            className="shrink-0 rounded-lg p-1.5 text-stone-500 transition hover:bg-stone-100 hover:text-stone-700"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -193,7 +193,7 @@ export default function TreeBetaPage() {
                 beta
               </span>
             </h1>
-            <p className="truncate text-xs text-stone-400">
+            <p className="truncate text-xs text-stone-500">
               {house
                 ? [
                     throughId ? `via ${nameOf(throughId)}` : null,
@@ -265,7 +265,7 @@ export default function TreeBetaPage() {
       <div className="flex-1 overflow-auto">
         {!house ? (
           <div className="flex h-full items-center justify-center px-8 text-center">
-            <p className="max-w-sm text-sm text-stone-400">
+            <p className="max-w-sm text-sm text-stone-500">
               No households yet. Once two people in this tree are recorded as
               parents, or as married, their household will appear here.
             </p>
@@ -339,7 +339,7 @@ export default function TreeBetaPage() {
             <button
               onClick={() => setSelectedId(null)}
               aria-label="Close"
-              className="shrink-0 rounded-lg p-2 text-stone-400 transition hover:bg-stone-100 hover:text-stone-700"
+              className="shrink-0 rounded-lg p-2 text-stone-500 transition hover:bg-stone-100 hover:text-stone-700"
             >
               <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                 <path d="M18 6 6 18M6 6l12 12" />

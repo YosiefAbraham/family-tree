@@ -164,7 +164,7 @@ export function ClusterModal({
 
       <ul className="mt-2 max-h-64 overflow-y-auto rounded-xl border border-stone-200">
         {candidates.length === 0 ? (
-          <li className="px-3.5 py-6 text-center text-sm text-stone-400">
+          <li className="px-3.5 py-6 text-center text-sm text-stone-500">
             {query.trim()
               ? "No matches."
               : members.length === people.length
@@ -203,7 +203,7 @@ export function ClusterModal({
                       {p.name}
                     </span>
                     {p.details?.[clusterKey] && (
-                      <span className="block truncate text-[11px] text-stone-400">
+                      <span className="block truncate text-[11px] text-stone-500">
                         currently {p.details[clusterKey]}
                       </span>
                     )}

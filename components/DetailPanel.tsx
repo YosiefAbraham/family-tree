@@ -108,13 +108,13 @@ export function DetailPanel({
         onTouchStart={onSheetTouchStart}
         onTouchEnd={onSheetTouchEnd}
       >
-        <span className="text-xs font-semibold uppercase tracking-wider text-stone-400">
+        <span className="text-xs font-semibold uppercase tracking-wider text-stone-500">
           {person ? "Person" : "Connection"}
         </span>
         <button
           onClick={onClose}
           aria-label="Close panel"
-          className="rounded-lg p-2 text-stone-500 transition hover:bg-stone-100 hover:text-stone-700 sm:p-1 sm:text-stone-400"
+          className="rounded-lg p-2 text-stone-500 transition hover:bg-stone-100 hover:text-stone-700 sm:p-1 sm:text-stone-500"
         >
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
             <path d="M6 6l12 12M18 6L6 18" />
@@ -409,7 +409,7 @@ function PersonDetail({
                     failure: "Couldn't release that",
                   })
                 }
-                className="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-stone-400 transition hover:bg-stone-100 hover:text-stone-600 disabled:opacity-50"
+                className="rounded-full px-2 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-stone-500 transition hover:bg-stone-100 hover:text-stone-600 disabled:opacity-50"
               >
                 Not you
               </button>
@@ -456,7 +456,7 @@ function PersonDetail({
             </p>
           )}
 
-          <p className="mt-4 flex items-center gap-1.5 text-xs text-stone-400">
+          <p className="mt-4 flex items-center gap-1.5 text-xs text-stone-500">
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
             </svg>
@@ -670,12 +670,12 @@ function PersonDetail({
             defaultOpen={rels.length === 0}
           >
             {rels.length === 0 ? (
-              <p className="py-1 text-sm text-stone-400">Not connected to anyone yet.</p>
+              <p className="py-1 text-sm text-stone-500">Not connected to anyone yet.</p>
             ) : (
               <div className="space-y-3">
                 {connectionGroups.map((group) => (
                   <div key={group.label}>
-                    <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-stone-400">
+                    <p className="mb-1 text-[10px] font-semibold uppercase tracking-wider text-stone-500">
                       {group.label}
                     </p>
                     <ul className="space-y-1">
@@ -776,7 +776,7 @@ function PersonDetail({
               type="button"
               onClick={() => setEditing(false)}
               aria-label="Back to details"
-              className="-ml-1 rounded-lg p-1 text-stone-400 transition hover:bg-stone-100 hover:text-stone-600"
+              className="-ml-1 rounded-lg p-1 text-stone-500 transition hover:bg-stone-100 hover:text-stone-600"
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="m15 18-6-6 6-6" />
@@ -809,7 +809,7 @@ function PersonDetail({
               the same fact at different precision, so they belong together
               rather than in two rows of four boxes that read as four facts. */}
           <fieldset className="rounded-xl border border-stone-200 px-3 py-2.5">
-            <legend className="px-1 text-xs font-semibold uppercase tracking-wider text-stone-400">
+            <legend className="px-1 text-xs font-semibold uppercase tracking-wider text-stone-500">
               Born
             </legend>
             {/* Widths live on wrappers: `inputCls` already carries `w-full`,
@@ -837,14 +837,14 @@ function PersonDetail({
                 />
               </div>
             </div>
-            <p className="mt-1.5 text-[11px] leading-relaxed text-stone-400">
+            <p className="mt-1.5 text-[11px] leading-relaxed text-stone-500">
               An exact date fills in the year for you.
             </p>
           </fieldset>
 
           {showDeath ? (
             <fieldset className="rounded-xl border border-stone-200 px-3 py-2.5">
-              <legend className="px-1 text-xs font-semibold uppercase tracking-wider text-stone-400">
+              <legend className="px-1 text-xs font-semibold uppercase tracking-wider text-stone-500">
                 Died
               </legend>
               <div className="flex items-center gap-2">
@@ -897,7 +897,7 @@ function PersonDetail({
               { value: "other" as const, label: "Other" },
             ]}
           />
-          <p className="-mt-2 text-[11px] leading-relaxed text-stone-400">
+          <p className="-mt-2 text-[11px] leading-relaxed text-stone-500">
             Only used to choose words like &ldquo;mother&rdquo; or
             &ldquo;niece&rdquo;. Left unset, the tree says &ldquo;parent&rdquo;.
           </p>
@@ -968,7 +968,7 @@ function RelationshipDetail({
     <div className="px-5 py-4">
       <p className="font-display text-lg leading-snug text-stone-900">
         <PersonLink name={from?.name} onClick={() => from && onSelectPerson(from.id)} />{" "}
-        <span className="text-stone-400">{verb}</span>{" "}
+        <span className="text-stone-500">{verb}</span>{" "}
         <PersonLink name={to?.name} onClick={() => to && onSelectPerson(to.id)} />
       </p>
 
@@ -990,7 +990,7 @@ function RelationshipDetail({
         </p>
       )}
 
-      <p className="mt-4 flex items-center gap-1.5 text-xs text-stone-400">
+      <p className="mt-4 flex items-center gap-1.5 text-xs text-stone-500">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
           <path d="M12 20h9M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z" />
         </svg>
@@ -999,7 +999,7 @@ function RelationshipDetail({
 
       {/* Your take */}
       <div className="mt-5">
-        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-stone-400">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-stone-500">
           Your take
         </p>
         <div className="grid grid-cols-2 gap-2">
@@ -1041,7 +1041,7 @@ function RelationshipDetail({
           </button>
         </div>
         {mine && (
-          <p className="mt-1.5 text-center text-[11px] text-stone-400">
+          <p className="mt-1.5 text-center text-[11px] text-stone-500">
             Tap again to withdraw your {mine.type === "CONFIRM" ? "confirmation" : "dispute"}.
           </p>
         )}
@@ -1049,11 +1049,11 @@ function RelationshipDetail({
 
       {/* Tally */}
       <div className="mt-5">
-        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-stone-400">
+        <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-stone-500">
           Family consensus · +{confirms.length}/−{disputes.length}
         </p>
         {reactions.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-stone-200 px-3.5 py-3 text-sm text-stone-400">
+          <p className="rounded-xl border border-dashed border-stone-200 px-3.5 py-3 text-sm text-stone-500">
             No one has weighed in yet. Be the first.
           </p>
         ) : (
@@ -1069,7 +1069,7 @@ function RelationshipDetail({
                     <Avatar name={userName(state, c.userId)} id={c.userId} size={22} />
                     {userName(state, c.userId)}
                     {c.userId === currentUser?.id && (
-                      <span className="text-[10px] font-semibold uppercase text-stone-400">you</span>
+                      <span className="text-[10px] font-semibold uppercase text-stone-500">you</span>
                     )}
                   </span>
                   <span
@@ -1215,7 +1215,7 @@ function ProfilePicture({
             </button>
             {theirPhotos.length > 0 && (
               <>
-                <p className="mt-1.5 px-2.5 pb-1 text-[10px] font-semibold uppercase tracking-wider text-stone-400">
+                <p className="mt-1.5 px-2.5 pb-1 text-[10px] font-semibold uppercase tracking-wider text-stone-500">
                   Or use one of their photos
                 </p>
                 <div className="grid grid-cols-4 gap-1 px-1">
@@ -1386,7 +1386,7 @@ function EditHistory({ entityId }: { entityId: string }) {
     <div className="mt-2">
       <button
         onClick={() => setOpen((o) => !o)}
-        className="flex items-center gap-1 text-xs text-stone-400 transition hover:text-stone-600"
+        className="flex items-center gap-1 text-xs text-stone-500 transition hover:text-stone-600"
       >
         <svg
           width="11"
@@ -1416,7 +1416,7 @@ function EditHistory({ entityId }: { entityId: string }) {
                 "set to "
               )}
               <span className="text-stone-700">{e.to || "(cleared)"}</span>
-              <span className="block text-stone-400">
+              <span className="block text-stone-500">
                 {userName(state, e.userId)} · {timeAgo(e.createdAt)}
               </span>
             </li>
@@ -1453,7 +1453,7 @@ function LineageControl({
 }) {
   return (
     <div className="mt-3 rounded-xl border border-stone-200 bg-stone-50/70 px-3 py-2.5">
-      <p className="text-[10px] font-semibold uppercase tracking-wider text-stone-400">
+      <p className="text-[10px] font-semibold uppercase tracking-wider text-stone-500">
         How they joined your line
       </p>
       <div className="mt-2 grid grid-cols-2 gap-1.5">

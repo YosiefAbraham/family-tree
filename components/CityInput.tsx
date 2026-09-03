@@ -166,7 +166,7 @@ export function CityInput({
               }`}
             >
               <span className="font-medium">{s.place.name}</span>
-              <span className="text-stone-400">
+              <span className="text-stone-500">
                 {[s.place.region, s.place.country].filter(Boolean).length > 0 && " · "}
                 {[s.place.region, s.place.country].filter(Boolean).join(", ")}
               </span>
@@ -175,7 +175,7 @@ export function CityInput({
         </ul>
         {/* GeoNames is CC BY 4.0, which requires visible attribution. Kept
             outside the scroll area so it does not scroll out of sight. */}
-        <p className="border-t border-stone-100 px-3.5 py-1.5 text-[10px] text-stone-400">
+        <p className="border-t border-stone-100 px-3.5 py-1.5 text-[10px] text-stone-500">
           Places from{" "}
           <a
             href="https://www.geonames.org"
@@ -217,7 +217,7 @@ function FeedbackLine({
   // calling a perfectly good city unrecognised.
   if (!ready && status !== "error") {
     return (
-      <p className="mt-1.5 text-xs text-stone-400" aria-live="polite">
+      <p className="mt-1.5 text-xs text-stone-500" aria-live="polite">
         Checking places…
       </p>
     );

@@ -158,7 +158,7 @@ export default function SettingsPage() {
         {/* ── Families ── */}
         <Section title="Your families" note="Leaving a tree doesn't delete what you added to it.">
           {families.length === 0 ? (
-            <p className="py-2 text-sm text-stone-400">You&apos;re not in any families yet.</p>
+            <p className="py-2 text-sm text-stone-500">You&apos;re not in any families yet.</p>
           ) : (
             families.map((f) => (
               <Row key={f.id} label={f.name} value="Member" action="Leave" />
@@ -187,7 +187,7 @@ export default function SettingsPage() {
           </div>
         </section>
 
-        <p className="mt-8 text-center text-xs text-stone-400">
+        <p className="mt-8 text-center text-xs text-stone-500">
           <Link href="/legal/privacy" className="hover:text-stone-600">
             Privacy
           </Link>
@@ -237,7 +237,7 @@ function Row({
       <div className="min-w-0">
         <p className="text-sm font-medium text-stone-800">{label}</p>
         <p className="truncate text-sm text-stone-500">{value}</p>
-        {hint && <p className="mt-0.5 text-xs leading-relaxed text-stone-400">{hint}</p>}
+        {hint && <p className="mt-0.5 text-xs leading-relaxed text-stone-500">{hint}</p>}
       </div>
       <Pending>{action}</Pending>
     </div>
@@ -270,7 +270,7 @@ function Pending({
       >
         {children}
       </button>
-      <span className="mt-1 block text-right text-[10px] uppercase tracking-wider text-stone-300">
+      <span className="mt-1 block text-right text-[10px] uppercase tracking-wider text-stone-500">
         Soon
       </span>
     </span>

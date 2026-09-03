@@ -64,7 +64,7 @@ export function InvitePersonModal({
             and fill in their own details.
           </p>
           {invitable.length === 0 ? (
-            <p className="mt-4 rounded-xl border border-dashed border-stone-200 px-4 py-6 text-center text-sm text-stone-400">
+            <p className="mt-4 rounded-xl border border-dashed border-stone-200 px-4 py-6 text-center text-sm text-stone-500">
               Everyone on this tree has already joined. Add a relative first,
               then invite them.
             </p>
@@ -83,7 +83,7 @@ export function InvitePersonModal({
                         {p.name}
                       </span>
                       {p.birthYear && (
-                        <span className="block text-xs text-stone-400">b. {p.birthYear}</span>
+                        <span className="block text-xs text-stone-500">b. {p.birthYear}</span>
                       )}
                     </span>
                   </button>
@@ -182,7 +182,7 @@ function InviteLink({
               value={link}
               onFocus={(e) => e.currentTarget.select()}
               aria-label={`Invite link for ${personName}`}
-              className="w-full bg-transparent font-mono text-xs text-stone-600 outline-none"
+              className="w-full rounded bg-transparent font-mono text-xs text-stone-600 outline-none focus-visible:outline-2 focus-visible:outline-teal-700"
             />
           </div>
 
@@ -197,7 +197,7 @@ function InviteLink({
             )}
           </div>
 
-          <p className="mt-3 text-xs leading-relaxed text-stone-400">
+          <p className="mt-3 text-xs leading-relaxed text-stone-500">
             Works once, and expires in {INVITE_DAYS} days. Sending a new link
             replaces this one, so an older link stops working.
           </p>
@@ -208,7 +208,7 @@ function InviteLink({
         <button
           type="button"
           onClick={onBack}
-          className="mt-4 text-xs text-stone-400 underline underline-offset-2 transition hover:text-stone-600"
+          className="mt-4 text-xs text-stone-500 underline underline-offset-2 transition hover:text-stone-600"
         >
           Invite someone else instead
         </button>

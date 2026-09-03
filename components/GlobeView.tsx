@@ -235,7 +235,7 @@ export function GlobeView({
           className="flex w-full items-center justify-between px-5 py-3 text-left md:pointer-events-none"
         >
           <span>
-            <span className="block text-xs font-semibold uppercase tracking-wider text-stone-400">
+            <span className="block text-xs font-semibold uppercase tracking-wider text-stone-500">
               Where the family lives
             </span>
             <span className="mt-0.5 block text-sm text-stone-600">
@@ -250,7 +250,7 @@ export function GlobeView({
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
-            className={`shrink-0 text-stone-400 transition md:hidden ${listOpen ? "rotate-180" : ""}`}
+            className={`shrink-0 text-stone-500 transition md:hidden ${listOpen ? "rotate-180" : ""}`}
           >
             <path d="m6 9 6 6 6-6" />
           </svg>
@@ -316,14 +316,14 @@ export function GlobeView({
                   {unplaced.map((u) => (
                     <li key={u.label} className="text-xs text-stone-500">
                       {u.label}{" "}
-                      <span className="text-stone-400">· {u.people.length}</span>
+                      <span className="text-stone-500">· {u.people.length}</span>
                     </li>
                   ))}
                 </ul>
               </>
             )}
             {without > 0 && (
-              <p className="mt-2 text-[11px] leading-relaxed text-stone-400">
+              <p className="mt-2 text-[11px] leading-relaxed text-stone-500">
                 {without} {without === 1 ? "person has" : "people have"} no current
                 city recorded.
               </p>

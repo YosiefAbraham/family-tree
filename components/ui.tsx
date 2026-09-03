@@ -92,7 +92,7 @@ export function Modal({
           <button
             onClick={onClose}
             aria-label="Close"
-            className="-mr-1 shrink-0 rounded-lg p-1.5 text-stone-400 transition hover:bg-stone-100 hover:text-stone-600"
+            className="-mr-1 shrink-0 rounded-lg p-1.5 text-stone-500 transition hover:bg-stone-100 hover:text-stone-600"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
               <path d="M6 6l12 12M18 6L6 18" />
@@ -120,7 +120,7 @@ export function Field({
     <label className="block">
       <span className="mb-1.5 flex items-baseline justify-between text-sm font-medium text-stone-700">
         {label}
-        {hint && <span className="text-xs font-normal text-stone-400">{hint}</span>}
+        {hint && <span className="text-xs font-normal text-stone-500">{hint}</span>}
       </span>
       {children}
     </label>
@@ -137,7 +137,7 @@ export function Field({
  * which is the size it needed anyway.
  */
 export const inputCls =
-  "w-full rounded-xl border border-stone-200 bg-white px-3.5 py-2.5 text-base text-stone-900 placeholder:text-stone-400 outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-600/15 sm:text-sm";
+  "w-full rounded-xl border border-stone-200 bg-white px-3.5 py-2.5 text-base text-stone-900 placeholder:text-stone-500 outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-600/15 sm:text-sm";
 
 /**
  * A row of buttons instead of a `<select>` for the short, closed choices.
@@ -163,7 +163,7 @@ export function Segmented<T extends string>({
       {label && (
         <span className="mb-1.5 flex items-baseline justify-between text-sm font-medium text-stone-700">
           {label}
-          {hint && <span className="text-xs font-normal text-stone-400">{hint}</span>}
+          {hint && <span className="text-xs font-normal text-stone-500">{hint}</span>}
         </span>
       )}
       <div className="flex gap-1 rounded-xl bg-stone-100 p-1">
@@ -224,7 +224,7 @@ export function Collapsible({
           strokeWidth="2.5"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className={`shrink-0 text-stone-400 transition-transform ${open ? "rotate-90" : ""}`}
+          className={`shrink-0 text-stone-500 transition-transform ${open ? "rotate-90" : ""}`}
         >
           <path d="m9 18 6-6-6-6" />
         </svg>
@@ -233,7 +233,7 @@ export function Collapsible({
           {count !== undefined && ` · ${count}`}
         </span>
         {!open && summary && (
-          <span className="ml-auto min-w-0 truncate text-xs text-stone-400">{summary}</span>
+          <span className="ml-auto min-w-0 truncate text-xs text-stone-500">{summary}</span>
         )}
       </button>
       {open && <div className="border-t border-stone-100 px-3 py-2.5">{children}</div>}
@@ -359,7 +359,7 @@ export function DangerIconButton({
       className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg transition sm:h-7 sm:w-7 ${
         armed
           ? "bg-red-600 text-white ring-2 ring-red-300"
-          : "text-stone-400 hover:bg-red-50 hover:text-red-600 sm:text-stone-300"
+          : "text-stone-500 hover:bg-red-50 hover:text-red-600 sm:text-stone-400"
       }`}
     >
       {children}
@@ -591,7 +591,7 @@ export function Wordmark({
   return (
     <span
       className={`font-display inline-flex items-center gap-2 text-lg font-semibold ${
-        muted ? "text-stone-400" : "text-stone-900"
+        muted ? "text-stone-500" : "text-stone-900"
       } ${className}`}
     >
       <svg

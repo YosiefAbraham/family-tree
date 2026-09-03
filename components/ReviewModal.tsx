@@ -134,7 +134,7 @@ export function ReviewModal({
                   <span className="block truncate text-sm text-stone-800">
                     {label(s)}
                   </span>
-                  <span className="block truncate text-[11px] text-stone-400">
+                  <span className="block truncate text-[11px] text-stone-500">
                     {reason(s)}
                   </span>
                 </button>
@@ -204,7 +204,7 @@ export function ReviewModal({
               </p>
             )}
             <div className="flex items-center justify-between">
-              <span className="text-xs text-stone-400">
+              <span className="text-xs text-stone-500">
                 {suggestions.length} waiting
               </span>
               <div className="flex gap-2">

@@ -250,7 +250,7 @@ export default function FamilyPage() {
           <Link
             href="/dashboard"
             aria-label="Back to families"
-            className="shrink-0 rounded-lg p-1.5 text-stone-400 transition hover:bg-stone-100 hover:text-stone-700"
+            className="shrink-0 rounded-lg p-1.5 text-stone-500 transition hover:bg-stone-100 hover:text-stone-700"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <path d="M19 12H5M12 19l-7-7 7-7" />
@@ -261,7 +261,7 @@ export default function FamilyPage() {
             <h1 className="font-display truncate text-base font-semibold leading-tight text-stone-900 sm:text-lg">
               {family.name}
             </h1>
-            <p className="truncate text-xs text-stone-400">
+            <p className="truncate text-xs text-stone-500">
               {people.length} {people.length === 1 ? "person" : "people"} ·{" "}
               {members.length} {members.length === 1 ? "member" : "members"}
               {disputedCount > 0 && (
@@ -308,7 +308,7 @@ export default function FamilyPage() {
           {/* Search */}
           <div className="relative hidden w-56 md:block">
             <svg
-              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-stone-400"
+              className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-stone-500"
               width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
             >
               <circle cx="11" cy="11" r="7" />
@@ -320,7 +320,7 @@ export default function FamilyPage() {
               onFocus={() => setSearchFocused(true)}
               onBlur={() => setTimeout(() => setSearchFocused(false), 150)}
               placeholder="Find someone…"
-              className="w-full rounded-xl border border-stone-200 bg-stone-50 py-2 pl-9 pr-3 text-base outline-none transition placeholder:text-stone-400 focus:border-teal-600 focus:bg-white focus:ring-2 focus:ring-teal-600/15 sm:text-sm"
+              className="w-full rounded-xl border border-stone-200 bg-stone-50 py-2 pl-9 pr-3 text-base outline-none transition placeholder:text-stone-500 focus:border-teal-600 focus:bg-white focus:ring-2 focus:ring-teal-600/15 sm:text-sm"
             />
             {searchFocused && searchResults.length > 0 && (
               <ul className="absolute left-0 right-0 top-full z-30 mt-1.5 overflow-hidden rounded-xl border border-stone-200 bg-white py-1 shadow-lg">
@@ -338,7 +338,7 @@ export default function FamilyPage() {
                       <span className="min-w-0">
                         <span className="block truncate text-sm text-stone-700">{p.name}</span>
                         {hint && (
-                          <span className="block truncate text-[11px] text-stone-400">
+                          <span className="block truncate text-[11px] text-stone-500">
                             {hint}
                           </span>
                         )}
@@ -355,7 +355,7 @@ export default function FamilyPage() {
             onClick={() => setMobileSearch((v) => !v)}
             aria-label="Search"
             className={`shrink-0 rounded-lg p-2 transition md:hidden ${
-              mobileSearch ? "bg-stone-100 text-stone-700" : "text-stone-400 hover:bg-stone-100"
+              mobileSearch ? "bg-stone-100 text-stone-700" : "text-stone-500 hover:bg-stone-100"
             }`}
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
@@ -393,7 +393,7 @@ export default function FamilyPage() {
             onClick={tour.reopen}
             title="How this works"
             aria-label="How this works"
-            className="hidden shrink-0 rounded-lg p-2 text-stone-400 transition hover:bg-stone-100 hover:text-stone-700 sm:block"
+            className="hidden shrink-0 rounded-lg p-2 text-stone-500 transition hover:bg-stone-100 hover:text-stone-700 sm:block"
           >
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
               <circle cx="12" cy="12" r="9" />
@@ -464,7 +464,7 @@ export default function FamilyPage() {
                     className="flex w-full items-center justify-between px-3.5 py-2.5 text-left text-sm text-stone-700 transition hover:bg-stone-50"
                   >
                     Family members
-                    <span className="text-xs text-stone-400">{members.length}</span>
+                    <span className="text-xs text-stone-500">{members.length}</span>
                   </button>
                   <button
                     onClick={() => { setMobileMenu(false); setInvitePersonId(undefined); setInviteOpen(true); }}
@@ -509,7 +509,7 @@ export default function FamilyPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Find someone by name, city, college…"
-              className="min-w-0 flex-1 rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-base outline-none transition placeholder:text-stone-400 focus:border-teal-600 focus:bg-white sm:text-sm"
+              className="min-w-0 flex-1 rounded-xl border border-stone-200 bg-stone-50 px-3.5 py-2.5 text-base outline-none transition placeholder:text-stone-500 focus:border-teal-600 focus:bg-white sm:text-sm"
             />
             <button
               type="button"
@@ -524,7 +524,7 @@ export default function FamilyPage() {
           </div>
           <ul className="min-h-0 flex-1 overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
             {search.trim() && searchResults.length === 0 && (
-              <li className="px-5 py-8 text-sm text-stone-400">No one matches that.</li>
+              <li className="px-5 py-8 text-sm text-stone-500">No one matches that.</li>
             )}
             {searchResults.map(({ person: p, hint }) => (
               <li key={p.id}>
@@ -540,7 +540,7 @@ export default function FamilyPage() {
                   <span className="min-w-0">
                     <span className="block truncate text-sm font-medium text-stone-800">{p.name}</span>
                     {hint && (
-                      <span className="block truncate text-xs text-stone-400">{hint}</span>
+                      <span className="block truncate text-xs text-stone-500">{hint}</span>
                     )}
                   </span>
                 </button>
@@ -678,7 +678,7 @@ export default function FamilyPage() {
             )}
 
             <div className="pointer-events-auto flex max-w-full flex-wrap items-center gap-2 rounded-xl border border-stone-200/80 bg-white/95 px-2.5 py-1.5 shadow-sm backdrop-blur sm:px-3 sm:py-2">
-              <span className="hidden text-xs font-semibold uppercase tracking-wider text-stone-400 sm:inline">
+              <span className="hidden text-xs font-semibold uppercase tracking-wider text-stone-500 sm:inline">
                 Cluster by
               </span>
               <select
@@ -835,7 +835,7 @@ export default function FamilyPage() {
               className={`flex min-h-11 items-center justify-center px-2 text-sm font-semibold transition ${
                 viewMode === v.key
                   ? "text-teal-800"
-                  : "text-stone-400 active:text-stone-600"
+                  : "text-stone-500 active:text-stone-600"
               }`}
             >
               <span className="relative">
@@ -962,18 +962,18 @@ export default function FamilyPage() {
                     <span className="block text-sm font-medium text-stone-800">
                       {u.name}
                       {u.id === currentUser?.id && (
-                        <span className="ml-1.5 text-[10px] font-semibold uppercase text-stone-400">
+                        <span className="ml-1.5 text-[10px] font-semibold uppercase text-stone-500">
                           you
                         </span>
                       )}
                     </span>
-                    <span className="block text-xs text-stone-400">
+                    <span className="block text-xs text-stone-500">
                       joined {timeAgo(m.joinedAt)}
                     </span>
                   </span>
                 </span>
                 <span className="flex items-center gap-2">
-                  <span className="text-xs text-stone-400">
+                  <span className="text-xs text-stone-500">
                     {added} {added === 1 ? "person" : "people"} added
                   </span>
                   {u.id === family.createdById ? (

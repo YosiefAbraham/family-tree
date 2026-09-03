@@ -106,7 +106,7 @@ export default function InvitePage() {
         >
           Accept invitation
         </PrimaryButton>
-        <p className="mt-3 text-xs text-stone-400">
+        <p className="mt-3 text-xs text-stone-500">
           Already have an account?{" "}
           <Link href={`/login?next=${next}`} className="text-teal-800 underline underline-offset-2">
             Sign in
@@ -229,7 +229,7 @@ function ProfileForm({
         }
       }}
     >
-      <p className="text-xs font-semibold uppercase tracking-wider text-stone-400">
+      <p className="text-xs font-semibold uppercase tracking-wider text-stone-500">
         A little about you
       </p>
 
@@ -246,7 +246,7 @@ function ProfileForm({
 
       <label className="mt-4 block">
         <span className="text-sm font-medium text-stone-700">
-          Date of birth <span className="font-normal text-stone-400">· optional</span>
+          Date of birth <span className="font-normal text-stone-500">· optional</span>
         </span>
         <input
           type="date"
@@ -259,7 +259,7 @@ function ProfileForm({
 
       <div className="mt-4">
         <span className="text-sm font-medium text-stone-700">
-          Current city <span className="font-normal text-stone-400">· optional</span>
+          Current city <span className="font-normal text-stone-500">· optional</span>
         </span>
         <div className="mt-1">
           <CityInput
@@ -310,7 +310,7 @@ function ProfileForm({
         {saving ? "Joining…" : `Join ${peek.familyName}`}
       </PrimaryButton>
 
-      <p className="mt-3 text-center text-xs text-stone-400">
+      <p className="mt-3 text-center text-xs text-stone-500">
         You can add photos, stories and more once you&apos;re in.
       </p>
     </form>

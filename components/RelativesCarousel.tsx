@@ -58,7 +58,7 @@ export function RelativesCarousel({
           </p>
         </div>
         {cards.length > 1 && (
-          <p className="shrink-0 text-xs tabular-nums text-stone-400">
+          <p className="shrink-0 text-xs tabular-nums text-stone-500">
             {index + 1} / {cards.length}
           </p>
         )}
@@ -91,7 +91,7 @@ export function RelativesCarousel({
               {person.lifeStatus === "deceased" && " · deceased"}
               {!person.lifeStatus && " · status unknown"}
             </p>
-            <p className="mt-0.5 text-sm text-stone-400">{card.familyName}</p>
+            <p className="mt-0.5 text-sm text-stone-500">{card.familyName}</p>
             {card.via && (
               <p className="mt-2 text-sm leading-relaxed text-stone-500">{card.via}</p>
             )}
@@ -114,7 +114,7 @@ export function RelativesCarousel({
                   const isUrl = field.kind === "url";
                   return (
                     <div key={field.key} className="min-w-0">
-                      <dt className="text-[11px] font-semibold uppercase tracking-wider text-stone-400">
+                      <dt className="text-[11px] font-semibold uppercase tracking-wider text-stone-500">
                         {field.label}
                       </dt>
                       <dd className="mt-0.5 truncate text-sm text-stone-700">
@@ -152,7 +152,7 @@ export function RelativesCarousel({
                     onClick={() =>
                       setIndex((n) => (n - 1 + cards.length) % cards.length)
                     }
-                    className="rounded-lg p-1.5 text-stone-400 transition hover:bg-stone-100 hover:text-stone-700"
+                    className="rounded-lg p-1.5 text-stone-500 transition hover:bg-stone-100 hover:text-stone-700"
                   >
                     <Arrow dir="left" />
                   </button>
@@ -174,7 +174,7 @@ export function RelativesCarousel({
                     type="button"
                     aria-label="Next relative"
                     onClick={() => setIndex((n) => (n + 1) % cards.length)}
-                    className="rounded-lg p-1.5 text-stone-400 transition hover:bg-stone-100 hover:text-stone-700"
+                    className="rounded-lg p-1.5 text-stone-500 transition hover:bg-stone-100 hover:text-stone-700"
                   >
                     <Arrow dir="right" />
                   </button>

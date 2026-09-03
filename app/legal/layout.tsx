@@ -23,7 +23,7 @@ export default function LegalLayout({
 
       <article className="legal mx-auto max-w-2xl px-6 pb-24">{children}</article>
 
-      <footer className="mx-auto flex max-w-2xl flex-wrap gap-x-5 gap-y-2 border-t border-stone-200 px-6 py-8 text-sm text-stone-400">
+      <footer className="mx-auto flex max-w-2xl flex-wrap gap-x-5 gap-y-2 border-t border-stone-200 px-6 py-8 text-sm text-stone-500">
         <Link href="/legal/privacy" className="transition hover:text-stone-700">
           Privacy
         </Link>

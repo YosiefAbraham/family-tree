@@ -135,7 +135,7 @@ export function RelationshipModal({
           )}
         </div>
       ) : (
-        <p className="mt-5 rounded-xl border border-dashed border-stone-200 px-3.5 py-6 text-center text-sm text-stone-400">
+        <p className="mt-5 rounded-xl border border-dashed border-stone-200 px-3.5 py-6 text-center text-sm text-stone-500">
           Choose both people to see how they&apos;re related.
         </p>
       )}

@@ -110,7 +110,7 @@ function PersonNodeInner({ data, selected }: NodeProps<PersonNodeData>) {
               </span>
             )}
           </p>
-          <p className="mt-0.5 truncate text-[11px] text-stone-400">
+          <p className="mt-0.5 truncate text-[11px] text-stone-500">
             {life ?? "dates unknown"}
           </p>
         </div>
@@ -137,7 +137,7 @@ function PersonNodeInner({ data, selected }: NodeProps<PersonNodeData>) {
 
       {lod === 2 && (
         <div className="mt-1.5 flex items-center justify-between border-t border-stone-100 pt-1.5">
-          <span className="truncate text-[10px] text-stone-400">
+          <span className="truncate text-[10px] text-stone-500">
             added by {data.addedByName}
           </span>
           {data.claimed && !data.isYou && (

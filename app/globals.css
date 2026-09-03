@@ -138,3 +138,49 @@ body {
 :root[data-simple="on"] .text-\[13px\] {
   font-size: 0.95rem;
 }
+
+/* ── Focus ─────────────────────────────────────────────────────────────────
+   The app had eleven focus rules and six of them were React Flow removing an
+   outline. Buttons and links had none at all, so keyboard focus fell back to
+   whatever the browser draws — invisible on a filled teal button, and nothing
+   like the rest of the interface.
+
+   :focus-visible rather than :focus, so the ring answers the keyboard and
+   doesn't flash on every mouse click. */
+:where(a[href], button, [role="button"], select, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+  outline: 2px solid #0f766e;
+  outline-offset: 2px;
+  border-radius: 0.5rem;
+}
+
+/* Inputs asked for a ring at 15% opacity, which on white is not far off no
+   ring at all. Same colour, enough of it to see. */
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #0f766e;
+  outline-offset: 1px;
+}
+
+/* React Flow strips the outline from its nodes, and a person card is the
+   single most important thing on the canvas to be able to reach. Put it back
+   for keyboard users without reintroducing a ring on every click. */
+.react-flow__node:focus-visible {
+  outline: 3px solid #0f766e !important;
+  outline-offset: 3px;
+  border-radius: 0.75rem;
+}
+
+/* ── Motion ────────────────────────────────────────────────────────────────
+   Two animations shipped with no reduced-motion path. Someone who has asked
+   their system for less movement — a group that overlaps heavily with the
+   people this app is for — was getting it anyway. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

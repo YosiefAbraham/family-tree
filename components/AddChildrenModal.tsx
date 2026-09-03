@@ -117,7 +117,7 @@ export function AddChildrenModal({
       )}
 
       <div className="space-y-2">
-        <div className="grid grid-cols-[minmax(0,1fr),86px,110px] gap-2 px-1 text-[11px] font-semibold uppercase tracking-wider text-stone-400">
+        <div className="grid grid-cols-[minmax(0,1fr),86px,110px] gap-2 px-1 text-[11px] font-semibold uppercase tracking-wider text-stone-500">
           <span>Name</span>
           <span>Born</span>
           <span>Gender</span>

@@ -16,7 +16,7 @@ export default function TermsPage() {
       <h1 className="font-display text-3xl font-semibold tracking-tight text-stone-900">
         Terms of Service
       </h1>
-      <p className="mt-2 text-sm text-stone-400">Last updated {LAST_UPDATED}</p>
+      <p className="mt-2 text-sm text-stone-500">Last updated {LAST_UPDATED}</p>
 
       <p className="mt-6 text-stone-600">
         These terms are the agreement between you and Dynasty. Using the service

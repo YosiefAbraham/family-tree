@@ -226,7 +226,7 @@ function LoginForm() {
           </Link>
         </div>
         {!offerResend && (
-          <p className="text-center text-[12px] text-stone-400">
+          <p className="text-center text-[12px] text-stone-500">
             Never got the confirmation email?{" "}
             <button
               type="button"

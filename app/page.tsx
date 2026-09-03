@@ -94,7 +94,7 @@ export default function LandingPage() {
         {/* Mini tree illustration */}
         <div className="mx-auto mt-16 max-w-2xl rounded-3xl border border-stone-200/80 bg-white p-8 shadow-xl shadow-stone-900/5">
           <MiniTree />
-          <p className="mt-6 text-xs text-stone-400">
+          <p className="mt-6 text-xs text-stone-500">
             Dashed red branches are disputed — the family sees the disagreement, not a silent edit.
           </p>
         </div>
@@ -115,7 +115,7 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <footer className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-3 px-6 py-10 text-sm text-stone-400">
+      <footer className="mx-auto flex max-w-5xl flex-wrap items-center gap-x-6 gap-y-3 px-6 py-10 text-sm text-stone-500">
         <Wordmark muted />
         <Link href="/legal/privacy" className="transition hover:text-stone-700">
           Privacy

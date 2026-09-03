@@ -173,7 +173,7 @@ export function ConnectModal({
             <span className="text-sm leading-snug text-stone-700">
               Also make <span className="font-semibold">{coParent.name}</span> a
               parent of <span className="font-semibold">{child?.name}</span>
-              <span className="block text-xs text-stone-400">
+              <span className="block text-xs text-stone-500">
                 They&apos;re recorded as the spouse — most children belong to both.
               </span>
             </span>

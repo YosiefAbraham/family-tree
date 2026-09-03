@@ -269,7 +269,7 @@ export function HouseholdView({
           </div>
         </>
       ) : (
-        <p className="mt-5 rounded-xl border border-dashed border-stone-200 px-4 py-3 text-xs text-stone-400">
+        <p className="mt-5 rounded-xl border border-dashed border-stone-200 px-4 py-3 text-xs text-stone-500">
           No children recorded in this household yet.
         </p>
       )}
@@ -397,7 +397,7 @@ function PersonChip({
           )
         )}
       </div>
-      <p className="text-center text-[10px] leading-none text-stone-400">
+      <p className="text-center text-[10px] leading-none text-stone-500">
         {life ?? "—"}
       </p>
     </div>
@@ -465,7 +465,7 @@ function DoorChip({
         <span className="block truncate text-[12px] font-semibold leading-tight text-stone-800">
           {title}
         </span>
-        <span className="block truncate text-[10px] leading-tight text-stone-400">
+        <span className="block truncate text-[10px] leading-tight text-stone-500">
           {detail}
         </span>
       </span>

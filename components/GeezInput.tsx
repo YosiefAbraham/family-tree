@@ -162,7 +162,7 @@ export function GeezInput({
           className={`absolute right-1.5 top-1/2 -translate-y-1/2 rounded-lg px-2 py-1 text-sm font-semibold transition ${
             on
               ? "bg-teal-800 text-white"
-              : "text-stone-400 hover:bg-stone-100 hover:text-stone-600"
+              : "text-stone-500 hover:bg-stone-100 hover:text-stone-600"
           }`}
           style={{ fontFamily: GEEZ_FONTS }}
         >
@@ -200,13 +200,13 @@ function Chart({ onPick }: { onPick: (char: string) => void }) {
         <table className="w-full border-collapse">
           <thead className="sticky top-0 bg-white">
             <tr>
-              <th className="w-9 border-b border-stone-100 py-1 text-[9px] font-semibold uppercase tracking-wide text-stone-300">
+              <th className="w-9 border-b border-stone-100 py-1 text-[9px] font-semibold uppercase tracking-wide text-stone-500">
                 key
               </th>
               {VOWEL_ORDERS.map((v) => (
                 <th
                   key={v}
-                  className="border-b border-stone-100 py-1 text-[9px] font-semibold text-stone-300"
+                  className="border-b border-stone-100 py-1 text-[9px] font-semibold text-stone-500"
                 >
                   {v}
                 </th>
@@ -216,7 +216,7 @@ function Chart({ onPick }: { onPick: (char: string) => void }) {
           <tbody>
             {families.map((fam) => (
               <tr key={fam.key}>
-                <td className="border-b border-stone-50 text-center align-middle font-mono text-[9px] text-stone-400">
+                <td className="border-b border-stone-50 text-center align-middle font-mono text-[9px] text-stone-500">
                   {fam.key}
                 </td>
                 {fam.forms.map((ch, i) => (

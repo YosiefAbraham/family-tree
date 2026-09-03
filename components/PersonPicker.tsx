@@ -120,17 +120,17 @@ export function PersonPicker({
                   </span>
                   {selected.id === mePersonId && <YouTag />}
                 </span>
-                <span className="block truncate text-xs text-stone-400">
+                <span className="block truncate text-xs text-stone-500">
                   {lifespan(selected.birthYear, selected.deathYear) ?? "dates unknown"}
                 </span>
               </span>
             </span>
           ) : (
-            <span className={`text-sm ${noneLabel ? "text-stone-700" : "text-stone-400"}`}>
+            <span className={`text-sm ${noneLabel ? "text-stone-700" : "text-stone-500"}`}>
               {noneLabel ?? emptyLabel}
             </span>
           )}
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="shrink-0 text-stone-400">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className="shrink-0 text-stone-500">
             <path d="m6 9 6 6 6-6" />
           </svg>
         </button>
@@ -177,7 +177,7 @@ export function PersonPicker({
               </li>
             )}
             {matches.length === 0 && (
-              <li className="px-3.5 py-3 text-sm text-stone-400">
+              <li className="px-3.5 py-3 text-sm text-stone-500">
                 No one matches “{query.trim()}”.
               </li>
             )}
@@ -202,12 +202,12 @@ export function PersonPicker({
                         {p.id === mePersonId && <YouTag />}
                       </span>
                       {hint && (
-                        <span className="block truncate text-[11px] text-stone-400">
+                        <span className="block truncate text-[11px] text-stone-500">
                           {hint}
                         </span>
                       )}
                     </span>
-                    <span className="shrink-0 text-[11px] text-stone-400">
+                    <span className="shrink-0 text-[11px] text-stone-500">
                       {lifespan(p.birthYear, p.deathYear) ?? ""}
                     </span>
                   </button>
@@ -216,7 +216,7 @@ export function PersonPicker({
             })}
           </ul>
           <div className="flex items-center justify-between gap-2 border-t border-stone-100 bg-stone-50 px-3 py-1.5">
-            <span className="text-[11px] text-stone-400">
+            <span className="text-[11px] text-stone-500">
               {matches.length} of {people.length}
             </span>
             <button
