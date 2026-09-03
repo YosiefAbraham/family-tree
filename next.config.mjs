@@ -1,5 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  /**
+   * `next dev` serves out of the same .next that `next build` overwrites, so
+   * running a build to check a change while the dev server is up leaves the
+   * running app serving half a build — most visibly with no stylesheet at all,
+   * which reads as "the site is broken" rather than "a build ran".
+   *
+   * Setting NEXT_DIST_DIR sends a build somewhere else. `npm run verify` uses
+   * it, so checking a change never disturbs the server you are looking at.
+   */
+  distDir: process.env.NEXT_DIST_DIR || ".next",
+
   async headers() {
     return [
       {
