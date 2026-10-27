@@ -76,7 +76,7 @@ export default function LandingPage() {
           relative, every addition is signed, and the family confirms what&apos;s true —
           no gatekeepers, no lost lore.
         </p>
-        <div className="mt-9 flex items-center justify-center gap-3">
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
           <Link
             href="/signup"
             className="rounded-xl bg-teal-800 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-teal-900/10 transition hover:bg-teal-700"
@@ -84,10 +84,10 @@ export default function LandingPage() {
             Start your tree
           </Link>
           <Link
-            href="/login"
+            href="/demo"
             className="rounded-xl border border-stone-200 bg-white px-6 py-3 text-sm font-medium text-stone-700 transition hover:border-stone-300 hover:bg-stone-100"
           >
-            Sign in
+            See a sample tree
           </Link>
         </div>
 

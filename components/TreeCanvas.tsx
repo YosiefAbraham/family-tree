@@ -95,7 +95,7 @@ function CanvasInner({
   onQuickAdd: (personId: string) => void;
   onClusterAdd?: (label: string) => void;
 }) {
-  const { state, currentUser } = useStore();
+  const { state, currentUser, readOnly } = useStore();
   const { setCenter, fitView } = useReactFlow();
   const viewW = useFlowStore((s) => s.width);
   const viewH = useFlowStore((s) => s.height);
@@ -197,8 +197,9 @@ function CanvasInner({
           marriedIn: isMarriedIn(p, kinship.bloodIds),
           personId: p.id,
           photoUrl: p.photoUrl,
-          onQuickAdd,
-          quickAddVisible: selection?.kind === "person" && selection.id === p.id,
+          onQuickAdd: readOnly ? undefined : onQuickAdd,
+          quickAddVisible:
+            !readOnly && selection?.kind === "person" && selection.id === p.id,
         },
       };
     });
@@ -218,6 +219,7 @@ function CanvasInner({
     onQuickAdd,
     onClusterAdd,
     currentUser,
+    readOnly,
   ]);
 
   const edges: Edge<RelationshipEdgeData>[] = useMemo(() => {
@@ -226,10 +228,9 @@ function CanvasInner({
 
     // faint dotted branches for assumed connections; clicking one opens a
     // panel where it can be confirmed or denied
-    const assumedEdges: Edge<RelationshipEdgeData>[] = allSuggestions(
-      relationships,
-      state.dismissedSuggestions
-    )
+    const assumedEdges: Edge<RelationshipEdgeData>[] = readOnly
+      ? []
+      : allSuggestions(relationships, state.dismissedSuggestions)
       // sibling guesses are left off the canvas for the same reason the
       // confirmed ones are — they crowd it without adding information.
       // The review queue and each person's panel still surface them.
@@ -425,6 +426,7 @@ function CanvasInner({
     query,
     mode,
     isolation,
+    readOnly,
   ]);
 
   // fly to a person when asked (search result, panel link)

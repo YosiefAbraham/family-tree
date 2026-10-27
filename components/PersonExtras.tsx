@@ -18,7 +18,7 @@ export function PersonExtras({
   person: Person;
   onSelectPerson: (id: string) => void;
 }) {
-  const { state, currentUser, setPersonDetail, setPersonVoice, removePhoto, addComment, removeComment } =
+  const { state, currentUser, readOnly, setPersonDetail, setPersonVoice, removePhoto, addComment, removeComment } =
     useStore();
   const toast = useToast();
 
@@ -82,6 +82,7 @@ export function PersonExtras({
         <p className="text-xs font-semibold uppercase tracking-wider text-stone-500">
           More details
         </p>
+        {!readOnly && (
         <button
           type="button"
           onClick={() => {
@@ -95,6 +96,7 @@ export function PersonExtras({
           </svg>
           Add info
         </button>
+        )}
       </div>
 
       {/* Anchor for the scroll-into-view above: it has to sit outside the
@@ -125,7 +127,9 @@ export function PersonExtras({
 
       {!hasAnything && !editing && !picking && (
         <p className="rounded-xl border border-dashed border-stone-200 px-3.5 py-3 text-sm text-stone-500">
-          Nothing here yet — add a story, a comment, or where they live.
+          {readOnly
+            ? "No extra details on this person."
+            : "Nothing here yet — add a story, a comment, or where they live."}
         </p>
       )}
 
@@ -196,11 +200,15 @@ export function PersonExtras({
       {person.voiceNameUrl && (
         <VoiceRow
           url={person.voiceNameUrl}
-          onRemove={() => {
-            void setPersonVoice(person.id, null).catch((err) =>
-              toast(err instanceof Error ? err.message : "Couldn't remove that", "error")
-            );
-          }}
+          onRemove={
+            readOnly
+              ? undefined
+              : () => {
+                  void setPersonVoice(person.id, null).catch((err) =>
+                    toast(err instanceof Error ? err.message : "Couldn't remove that", "error")
+                  );
+                }
+          }
         />
       )}
 
@@ -215,6 +223,7 @@ export function PersonExtras({
                   <dt className="text-[10px] font-semibold uppercase tracking-wider text-stone-500">
                     {f.label}
                   </dt>
+                  {!readOnly && (
                   <span className="flex items-center gap-1.5 opacity-100 transition sm:gap-0.5 sm:opacity-0 sm:group-hover:opacity-100">
                     <button
                       onClick={() => setEditing(f.key)}
@@ -239,6 +248,7 @@ export function PersonExtras({
                       </svg>
                     </DangerIconButton>
                   </span>
+                  )}
                 </div>
                 <dd className="mt-0.5 text-sm leading-snug text-stone-700">
                   {f.kind === "url" ? (
@@ -279,7 +289,7 @@ export function PersonExtras({
                       {userName(state, c.userId)}
                       <span className="font-normal text-stone-500">· {timeAgo(c.createdAt)}</span>
                     </span>
-                    {c.userId === currentUser?.id && (
+                    {c.userId === currentUser?.id && !readOnly && (
                       <DangerIconButton
                         label="Delete comment"
                         confirmLabel="Tap again to delete this comment"
@@ -689,7 +699,7 @@ function VoiceEditor({ person, onDone }: { person: Person; onDone: () => void })
   );
 }
 
-function VoiceRow({ url, onRemove }: { url: string; onRemove: () => void }) {
+function VoiceRow({ url, onRemove }: { url: string; onRemove?: () => void }) {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [playing, setPlaying] = useState(false);
   return (
@@ -724,15 +734,17 @@ function VoiceRow({ url, onRemove }: { url: string; onRemove: () => void }) {
         Hear their name
       </button>
       <audio ref={audioRef} src={url} onEnded={() => setPlaying(false)} className="hidden" />
-      <DangerIconButton
-        label="Remove recording"
-        confirmLabel="Tap again to remove the recording"
-        onConfirm={onRemove}
-      >
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-          <path d="M6 6l12 12M18 6L6 18" />
-        </svg>
-      </DangerIconButton>
+      {onRemove && (
+        <DangerIconButton
+          label="Remove recording"
+          confirmLabel="Tap again to remove the recording"
+          onConfirm={onRemove}
+        >
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+            <path d="M6 6l12 12M18 6L6 18" />
+          </svg>
+        </DangerIconButton>
+      )}
     </div>
   );
 }

@@ -191,6 +191,7 @@ function PersonDetail({
   const {
     state,
     currentUser,
+    readOnly,
     updatePerson,
     deletePerson,
     addRelationship,
@@ -399,7 +400,8 @@ function PersonDetail({
             {!person.lifeStatus && <Chip tone="stone">Status unknown</Chip>}
             {isYou && <Chip tone="teal">This is you</Chip>}
             {claimed && !isYou && <Chip tone="teal">Has an account</Chip>}
-            {isYou && (
+            {readOnly && marriedIn && <Chip tone="stone">Married in</Chip>}
+            {isYou && !readOnly && (
               <button
                 type="button"
                 disabled={pending}
@@ -414,7 +416,7 @@ function PersonDetail({
                 Not you
               </button>
             )}
-            {!claimed && (
+            {!claimed && !readOnly && (
               <button
                 type="button"
                 disabled={pending}
@@ -430,7 +432,7 @@ function PersonDetail({
             )}
           </div>
 
-          {!isYou && (
+          {!isYou && !readOnly && (
             <LineageControl
               marriedIn={marriedIn}
               confirmed={!!person.lineage}
@@ -714,54 +716,55 @@ function PersonDetail({
             )}
           </Collapsible>
 
-          {/* Actions */}
-          <div className="mt-5 grid grid-cols-2 gap-2">
-            <PrimaryButton onClick={() => onAddRelative(person.id)} className="!px-3 !py-2 text-xs">
-              + Add relative
-            </PrimaryButton>
-            <GhostButton onClick={() => onAddChildren(person.id)} className="!px-3 !py-2 text-xs">
-              + Add children
-            </GhostButton>
-            <GhostButton onClick={() => onConnectFrom(person.id)} className="!px-3 !py-2 text-xs">
-              Connect to someone
-            </GhostButton>
-            {/* Only for a node nobody has claimed — you cannot invite someone
-                who is already in the tree with an account of their own. */}
-            {!person.accountUserId && (
-              <GhostButton
-                onClick={() => onInvite(person.id)}
-                className="!px-3 !py-2 text-xs !border-teal-700/30 !text-teal-800 hover:!bg-teal-800/5"
-              >
-                Invite {person.name.split(" ")[0]}
-              </GhostButton>
-            )}
-          </div>
-          <div className="mt-2 flex items-center justify-between">
-            <button
-              onClick={startEdit}
-              className="rounded-xl px-3.5 py-2 text-sm font-medium text-stone-600 transition hover:bg-stone-100"
-            >
-              Edit details
-            </button>
-            <DangerButton
-              label="Remove"
-              confirmLabel={`Remove ${person.name}${rels.length ? ` and ${rels.length} connection${rels.length > 1 ? "s" : ""}` : ""}?`}
-              addedBy={
-                currentUser && person.addedById !== currentUser.id
-                  ? userName(state, person.addedById)
-                  : undefined
-              }
-              onConfirm={() =>
-                void run(() => deletePerson(person.id), {
-                  failure: `Couldn't remove ${person.name}`,
-                }).then((removed) => {
-                  if (!removed) return;
-                  toast(`${person.name} removed from the tree`, "info");
-                  onClose();
-                })
-              }
-            />
-          </div>
+          {!readOnly && (
+            <>
+              <div className="mt-5 grid grid-cols-2 gap-2">
+                <PrimaryButton onClick={() => onAddRelative(person.id)} className="!px-3 !py-2 text-xs">
+                  + Add relative
+                </PrimaryButton>
+                <GhostButton onClick={() => onAddChildren(person.id)} className="!px-3 !py-2 text-xs">
+                  + Add children
+                </GhostButton>
+                <GhostButton onClick={() => onConnectFrom(person.id)} className="!px-3 !py-2 text-xs">
+                  Connect to someone
+                </GhostButton>
+                {!person.accountUserId && (
+                  <GhostButton
+                    onClick={() => onInvite(person.id)}
+                    className="!px-3 !py-2 text-xs !border-teal-700/30 !text-teal-800 hover:!bg-teal-800/5"
+                  >
+                    Invite {person.name.split(" ")[0]}
+                  </GhostButton>
+                )}
+              </div>
+              <div className="mt-2 flex items-center justify-between">
+                <button
+                  onClick={startEdit}
+                  className="rounded-xl px-3.5 py-2 text-sm font-medium text-stone-600 transition hover:bg-stone-100"
+                >
+                  Edit details
+                </button>
+                <DangerButton
+                  label="Remove"
+                  confirmLabel={`Remove ${person.name}${rels.length ? ` and ${rels.length} connection${rels.length > 1 ? "s" : ""}` : ""}?`}
+                  addedBy={
+                    currentUser && person.addedById !== currentUser.id
+                      ? userName(state, person.addedById)
+                      : undefined
+                  }
+                  onConfirm={() =>
+                    void run(() => deletePerson(person.id), {
+                      failure: `Couldn't remove ${person.name}`,
+                    }).then((removed) => {
+                      if (!removed) return;
+                      toast(`${person.name} removed from the tree`, "info");
+                      onClose();
+                    })
+                  }
+                />
+              </div>
+            </>
+          )}
         </>
       ) : (
         <form
@@ -938,7 +941,7 @@ function RelationshipDetail({
   onSelectPerson: (id: string) => void;
   onClose: () => void;
 }) {
-  const { state, currentUser, setReaction, deleteRelationship, updateRelationship } = useStore();
+  const { state, currentUser, readOnly, setReaction, deleteRelationship, updateRelationship } = useStore();
   const [editingRel, setEditingRel] = useState(false);
   const toast = useToast();
   const { run, pending } = useAction();
@@ -997,7 +1000,7 @@ function RelationshipDetail({
         Asserted by {userName(state, relationship.addedById)} · {timeAgo(relationship.createdAt)}
       </p>
 
-      {/* Your take */}
+      {!readOnly && (
       <div className="mt-5">
         <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-stone-500">
           Your take
@@ -1046,6 +1049,7 @@ function RelationshipDetail({
           </p>
         )}
       </div>
+      )}
 
       {/* Tally */}
       <div className="mt-5">
@@ -1085,51 +1089,57 @@ function RelationshipDetail({
         )}
       </div>
 
-      {editingRel ? (
-        <RelationshipEditor
-          relationship={relationship}
-          reactionCount={reactions.length}
-          onCancel={() => setEditingRel(false)}
-          saving={pending}
-          onSave={(patch) =>
-            void run(() => updateRelationship(relationship.id, patch), {
-              success: "Connection updated",
-            }).then((saved) => {
-              if (saved) setEditingRel(false);
-            })
-          }
-        />
-      ) : (
-        <button
-          onClick={() => setEditingRel(true)}
-          className="mt-5 w-full rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm font-medium text-stone-600 transition hover:border-teal-700/40 hover:bg-teal-800/5"
-        >
-          Edit this connection
-        </button>
+      {!readOnly && (
+        <>
+          {editingRel ? (
+            <RelationshipEditor
+              relationship={relationship}
+              reactionCount={reactions.length}
+              onCancel={() => setEditingRel(false)}
+              saving={pending}
+              onSave={(patch) =>
+                void run(() => updateRelationship(relationship.id, patch), {
+                  success: "Connection updated",
+                }).then((saved) => {
+                  if (saved) setEditingRel(false);
+                })
+              }
+            />
+          ) : (
+            <button
+              onClick={() => setEditingRel(true)}
+              className="mt-5 w-full rounded-xl border border-stone-200 bg-white px-3 py-2 text-sm font-medium text-stone-600 transition hover:border-teal-700/40 hover:bg-teal-800/5"
+            >
+              Edit this connection
+            </button>
+          )}
+        </>
       )}
 
       <EditHistory entityId={relationship.id} />
 
-      <div className="mt-5 flex justify-end border-t border-stone-100 pt-3">
-        <DangerButton
-          label="Remove connection"
-          confirmLabel="Remove this connection?"
-          addedBy={
-            currentUser && relationship.addedById !== currentUser.id
-              ? userName(state, relationship.addedById)
-              : undefined
-          }
-          onConfirm={() =>
-            void run(() => deleteRelationship(relationship.id), {
-              failure: "Couldn't remove that connection",
-            }).then((removed) => {
-              if (!removed) return;
-              toast("Connection removed", "info");
-              onClose();
-            })
-          }
-        />
-      </div>
+      {!readOnly && (
+        <div className="mt-5 flex justify-end border-t border-stone-100 pt-3">
+          <DangerButton
+            label="Remove connection"
+            confirmLabel="Remove this connection?"
+            addedBy={
+              currentUser && relationship.addedById !== currentUser.id
+                ? userName(state, relationship.addedById)
+                : undefined
+            }
+            onConfirm={() =>
+              void run(() => deleteRelationship(relationship.id), {
+                failure: "Couldn't remove that connection",
+              }).then((removed) => {
+                if (!removed) return;
+                toast("Connection removed", "info");
+                onClose();
+              })
+            }
+          />
+        </div>
+      )}
     </div>
   );
 }
@@ -1146,7 +1156,7 @@ function ProfilePicture({
   person: Person;
   onSet: (personId: string, dataUrl: string | null) => Promise<void>;
 }) {
-  const { state } = useStore();
+  const { state, readOnly } = useStore();
   const toast = useToast();
   const { run, pending } = useAction();
   const fileRef = useRef<HTMLInputElement>(null);
@@ -1173,6 +1183,10 @@ function ProfilePicture({
       failure: "Couldn't save that picture",
     });
   };
+
+  if (readOnly) {
+    return <Avatar name={person.name} id={person.name} size={48} src={person.photoUrl} />;
+  }
 
   return (
     <div className="relative">

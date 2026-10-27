@@ -58,7 +58,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} ${fraunces.variable}`}>
-      <body className="font-sans">
+      <body className={`${inter.className} font-sans`}>
         <ElderProvider>
           <StoreProvider>
             <ToastProvider>{children}</ToastProvider>

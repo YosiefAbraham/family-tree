@@ -60,7 +60,9 @@ export interface AddPersonInput {
   };
 }
 
-interface StoreApi {
+export interface StoreApi {
+  /** Sample trees set this so the canvas and panels stay look-only. */
+  readOnly: boolean;
   state: Store;
   hydrated: boolean;
   loadError: string | null;
@@ -151,7 +153,7 @@ interface StoreApi {
   ensureEdits: (entityId: string) => void;
 }
 
-const StoreContext = createContext<StoreApi | null>(null);
+export const StoreContext = createContext<StoreApi | null>(null);
 
 // Reached when the thing being edited has been deleted by another member (or
 // in another tab) since this view was rendered. Returning quietly instead
@@ -1238,6 +1240,7 @@ export function StoreProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const api: StoreApi = {
+    readOnly: false,
     state,
     hydrated,
     loadError,
